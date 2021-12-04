@@ -66,6 +66,7 @@ const Login = (props) => {
   }
 
   if (isLoggedIn) {
+    console.log("hehe")
     return <Redirect to="/profile" />
   }
 
@@ -119,7 +120,7 @@ const Login = (props) => {
               </div>
             </div>
           )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          <CheckButton style={{}} ref={checkBtn} />
         </Form>
       </div>
     </div>

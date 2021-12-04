@@ -16,6 +16,7 @@ import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 
 import { history } from "./helpers/history";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -31,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     if (currentUser) {
-      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+      setShowAdminBoard(currentUser.role === "ROLE_ADMIN");
     }
   }, [currentUser]);
 
@@ -43,8 +44,8 @@ const App = () => {
     <Router history={history}>
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            Nguyen Test
+          <Link to={"/"} className="navbar-brand ml-2">
+            IOT
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -79,7 +80,7 @@ const App = () => {
               </li>
               <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={logOut}>
-                  LogOut
+                  Log out
                 </a>
               </li>
             </div>
@@ -101,14 +102,16 @@ const App = () => {
         </nav>
 
         <div className="container mt-3">
-          <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route path="/user" component={BoardUser} />
-            <Route path="/admin" component={BoardAdmin} />
-          </Switch>
+          <BrowserRouter>
+            <Switch>
+              <Route exact path={["/", "/home"]} component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/user" component={BoardUser} />
+              <Route exact path="/admin" component={BoardAdmin} />
+            </Switch>
+          </BrowserRouter>
         </div>
       </div>
     </Router>
