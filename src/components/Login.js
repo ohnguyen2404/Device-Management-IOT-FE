@@ -50,11 +50,11 @@ const Login = (props) => {
 
     form.current.validateAll()
     
-    //check no error
+    // check no error
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(username, password))
         .then(() => {
-          props.history.push("/profile")
+          props.history.push("/profile") // login success will redirect to /profile
           window.location.reload()
         })
         .catch(() => {
@@ -120,7 +120,7 @@ const Login = (props) => {
               </div>
             </div>
           )}
-          <CheckButton style={{}} ref={checkBtn} />
+          <CheckButton style={{display: 'none'}} ref={checkBtn} />
         </Form>
       </div>
     </div>

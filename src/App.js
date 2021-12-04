@@ -16,7 +16,6 @@ import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 
 import { history } from "./helpers/history";
-import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -32,7 +31,7 @@ const App = () => {
 
   useEffect(() => {
     if (currentUser) {
-      setShowAdminBoard(currentUser.role === "ROLE_ADMIN");
+      setShowAdminBoard(currentUser.role === "ADMIN");
     }
   }, [currentUser]);
 
@@ -44,7 +43,7 @@ const App = () => {
     <Router history={history}>
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand ml-2">
+          <Link to={"/"} className="navbar-brand">
             IOT
           </Link>
           <div className="navbar-nav mr-auto">
@@ -57,7 +56,7 @@ const App = () => {
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
-                  Admin Board
+                  Admin-Board
                 </Link>
               </li>
             )}
@@ -65,7 +64,7 @@ const App = () => {
             {currentUser && (
               <li className="nav-item">
                 <Link to={"/user"} className="nav-link">
-                  User
+                  User-Board
                 </Link>
               </li>
             )}
@@ -102,16 +101,14 @@ const App = () => {
         </nav>
 
         <div className="container mt-3">
-          <BrowserRouter>
-            <Switch>
-              <Route exact path={["/", "/home"]} component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/user" component={BoardUser} />
-              <Route exact path="/admin" component={BoardAdmin} />
-            </Switch>
-          </BrowserRouter>
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/user" component={BoardUser} />
+            <Route exact path="/admin" component={BoardAdmin} />
+          </Switch>
         </div>
       </div>
     </Router>
