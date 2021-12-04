@@ -26,7 +26,7 @@ const Login = (props) => {
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
 
-  // get state from store
+  // get state from index
   const { isLoggedIn } = useSelector(state => state.auth)
   const { message } = useSelector(state => state.message)
 

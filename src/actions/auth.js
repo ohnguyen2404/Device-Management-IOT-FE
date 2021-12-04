@@ -6,8 +6,7 @@ import {
   LOGOUT,
   SET_MESSAGE,
 } from "./types";
-
-import AuthService from "../services/auth.service";
+import {AuthService} from "../services";
 
 export const register = (username, email, password) => (dispatch) => {
   return AuthService.register(username, email, password).then(
