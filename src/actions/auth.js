@@ -11,13 +11,14 @@ import {AuthService} from "../services";
 export const register = (username, email, password) => (dispatch) => {
   return AuthService.register(username, email, password).then(
     (response) => {
+      console.log('res', response);
       dispatch({
         type: REGISTER_SUCCESS,
       });
 
       dispatch({
         type: SET_MESSAGE,
-        payload: response.data.message,
+        payload: response.message,
       });
 
       return Promise.resolve();
@@ -47,6 +48,7 @@ export const register = (username, email, password) => (dispatch) => {
 export const login = (username, password) => (dispatch) => {
   return AuthService.login(username, password).then(
     (data) => {
+      console.log('data', data);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { user: data },
