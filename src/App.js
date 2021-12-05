@@ -4,6 +4,7 @@ import { Router, Switch, Route, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import "antd/dist/antd.css";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
@@ -11,6 +12,8 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardAdmin from "./components/BoardAdmin";
+import AntLogin from "./components/AntLogin";
+import AntRegister from "./components/AntRegister";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -100,10 +103,10 @@ const App = () => {
           )}
         </nav>
 
-        <div className="container mt-3">
+        <div className="container mt-5">
           <Switch>
             <Route exact path={["/", "/home"]} component={Home}/>
-            <Route exact path="/login" component={Login}/>
+            <Route exact path="/login" component={AntLogin}/>
             <Route exact path="/register" component={Register} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/user" component={BoardUser} />
